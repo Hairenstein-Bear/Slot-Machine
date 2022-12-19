@@ -1,0 +1,109 @@
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slot Machine</title>
+  <style>
+    #container {
+      width:100%;
+      height:100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #slotMachine {
+      width: 500px;
+      height: 200px;
+      border: 2px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #reels {
+      display: flex;
+      align-items: center;
+      
+    }
+
+    .reel {
+      width: 150px;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .reel img {
+      position: absolute;
+      top: 112px;
+      left: 0;
+      width: 100px;
+      height: 70px;
+    }
+
+    #spinButton {
+      width: 100px;
+      height: 50px;
+      font-size: 20px;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+  <div id="slotMachine">
+    <div id="reels">
+      <div class="reel">
+        <img src="on.png" alt="me" class="symbol">
+        <img src="me.png" alt="lemon" class="symbol">
+        <img src="lemon.jp g" alt="sun" class="symbol">
+        <img src="hulu.png" alt="sun" class="symbol">
+        <img src="button.png" alt="sun" class="symbol">
+      </div>
+      <div class="reel">
+        <img src="on.png" alt="lemon" class="symbol">
+        <img src="me.png" alt="Sun" class="symbol">
+        <img src="lemon.jpg" alt="me" class="symbol">
+        <img src="button.png" alt="sun" class="symbol">
+        <img src="hulu.png" alt="sun" class="symbol">
+      </div>
+      <div class="reel">
+        <img src="on.png" alt="sun" class="symbol">
+        <img src="me.png" alt="me" class="symbol">
+        <img src="lemon.jpg" alt="lemon" class="symbol">
+        <img src="button.png" alt="sun" class="symbol">
+        <img src="hulu.png" alt="sun" class="symbol">
+      </div>
+    </div>
+    <button id="spinButton">Spin</button>
+  </div>
+</div>
+  <script>
+    const imageFilePaths = [
+  "on.png",
+  "me.png",
+  "lemon.jpg",
+  "button.png",
+  "hulu.png"
+];
+
+const reels = document.querySelectorAll(".reel");
+const spinButton = document.getElementById("spinButton");
+spinButton.addEventListener("click", function() {
+  // Spin each reel
+  reels.forEach(function(reel) {
+    // Generate a new random number between 0 and the number of symbols in the reel
+    
+    let randomNumber = Math.round(Math.random() * reel.children.length+1) % imageFilePaths.length;
+    // Set the src attribute of the selected image element to the randomly selected image file path
+    console.log(randomNumber);
+    reel.children[randomNumber].src = imageFilePaths[randomNumber];
+  });
+});
+  </script>
+</body>
+</html>
