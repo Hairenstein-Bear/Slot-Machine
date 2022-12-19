@@ -57,21 +57,21 @@
   <div id="container">
   <div id="slotMachine">
     <div id="reels">
-      <div class="reel">
+      <div class="reel" id="reel1">
         <img src="on.png" alt="me" class="symbol">
         <img src="me.png" alt="lemon" class="symbol">
         <img src="lemon.jp g" alt="sun" class="symbol">
         <img src="hulu.png" alt="sun" class="symbol">
         <img src="button.png" alt="sun" class="symbol">
       </div>
-      <div class="reel">
+      <div class="reel" id="reel2">
         <img src="on.png" alt="lemon" class="symbol">
         <img src="me.png" alt="Sun" class="symbol">
         <img src="lemon.jpg" alt="me" class="symbol">
         <img src="button.png" alt="sun" class="symbol">
         <img src="hulu.png" alt="sun" class="symbol">
       </div>
-      <div class="reel">
+      <div class="reel" id="reel3">
         <img src="on.png" alt="sun" class="symbol">
         <img src="me.png" alt="me" class="symbol">
         <img src="lemon.jpg" alt="lemon" class="symbol">
@@ -91,18 +91,25 @@
   "hulu.png"
 ];
 
-const reels = document.querySelectorAll(".reel");
+
+const reel = document.querySelector(".reel");
 const spinButton = document.getElementById("spinButton");
 spinButton.addEventListener("click", function() {
-  // Spin each reel
-  reels.forEach(function(reel) {
-    // Generate a new random number between 0 and the number of symbols in the reel
-    
-    let randomNumber = Math.round(Math.random() * reel.children.length+1) % imageFilePaths.length;
-    // Set the src attribute of the selected image element to the randomly selected image file path
-    console.log(randomNumber);
-    reel.children[randomNumber].src = imageFilePaths[randomNumber];
-  });
+for (let i = 0; i < reels.children.length; i++) {
+  let randomNumber = Math.floor(Math.random() * imageFilePaths.length);
+
+// Select a random image from the imageFilePaths array
+let randomImage = imageFilePaths[randomNumber];
+console.log(randomNumber);
+console.log(randomImage);
+
+  reels.children[i].src = randomImage;
+}
+
+if (reels.children[0].src === reels.children[1].src && reels.children[1].src === reels.children[2].src) {
+  console.log('You WIN!');
+}
+
 });
   </script>
 </body>
